@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="../js/jquery.min.js"></script>
+    <link href="../apps/admin/_static/css/admin.css" rel="stylesheet" type="text/css">
+    <script>
+        /**
+         * 全局变量
+         */
+        var SITE_URL  = 'http://try.51eduline.com';
+        var THEME_URL = 'http://try.51eduline.com/addons/theme/stv1/_static';
+        var APPNAME   = 'course';
+        var UPLOAD_URL ='http://try.51eduline.com/data/upload';
+        var MID		  = '1042';
+        var UID		  = '1042';
+        var initNums  =  '140';
+        // Js语言变量
+        var LANG = new Array();
+        var info = {icon:0,time:1800,btn:false,title:'',closeBtn:0};
+        var success = {icon:1,time:1800,btn:false,title:'',closeBtn:0};
+        var error = {icon:2,time:1800,btn:false,title:'',closeBtn:0};
+    </script>
+    <!-- 引入juquery -->
+    <!-- 引入bootstrap的css、js -->
+
+    <script type="text/javascript" src="../bootstarp/bootstrap3/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../bootstarp/bootstrap3/css/bootstrap.css">
+    <!--引入table-->
+    <script type="text/javascript" src="../bootstarp/bootstrap-table/bootstrap-table.js"></script>
+    <link rel="stylesheet" href="../bootstarp/bootstrap-table/bootstrap-table.css">
+    <script type="text/javascript" src="../bootstarp/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <!--引入bootbox-->
+    <script type="text/javascript" src="../bootstarp/bootstrap-bootbox/bootbox.js"></script>
+    <!-- 引入日期的css、js -->
+    <link rel="stylesheet" href="../bootstarp/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
+    <script type="text/javascript" src="../bootstarp/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/core.js"></script>
+    <script type="text/javascript" src="../apps/admin/_static/js/module.js"></script>
+    <script src="../addons/theme/stv1/_static/js/common.js"></script>
+    <script src="../addons/theme/stv1/_static/js/module.common.js"></script>
+    <script type="text/javascript" src="../apps/admin/_static/js/admin.js"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/ui.layer.js"></script>
+    <!--非admin应用的后台js脚本统一写在  模板风格对应的app目录下的admin.js中-->
+    <script type="text/javascript" src="../apps/course/_static/js/admin.js"></script>
+    <script type="text/javascript" src="../uploadify/jquery.uploadify.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../uploadify/uploadify.css">
+    <style>
+        @font-face {font-family: 'iconfontNEW';src: url('http://try.51eduline.com/addons/theme/stv1/_static/icon/iconfontNEW.woff?v={$site.sys_version}');}
+        .iconfontNEW{font-family: iconfontNEW;font-style: normal;}
+    </style>
+
+</head>
+<body>
+<style>
+    .clewbox{
+        position: absolute;
+        top: 28px;
+        left: 250px;
+    }
+    #attach_upload_tool{
+        position: relative;
+    }
+</style>
+<div id="container" class="so_main">
+    <div class="tit_tab">
+        <ul>
+            <li><a href="../admin/bunch_planting.html?app=course&mod=AdminVideo&act=index&tabHash=index" >已审</a></li><li><a href="http://try.51eduline.com/index.php?app=course&mod=AdminVideo&act=unauditList&tabHash=unauditList" >待审</a></li><li><a href="http://try.51eduline.com/index.php?app=course&mod=AdminVideo&act=recycle&tabHash=recycle" >回收站</a></li><li><a href="http://try.51eduline.com/index.php?app=course&mod=AdminVideo&act=addVideo&tabHash=addVideo" class="on">添加</a></li><li><a href="http://try.51eduline.com/index.php?app=course&mod=AdminVideo&act=videoLib&tabHash=videoLib" >课件库</a></li><li><a href="http://try.51eduline.com/index.php?app=course&mod=AdminVideo&act=problemQuestionBank&tabHash=problemQuestionBank" >视频弹题题库</a></li><li><a href="http://try.51eduline.com/index.php?app=course&mod=AdminVideo&act=videoLibVerify&tabHash=videoLibVerify" >CC待同步视频库</a></li><li><a href="http://try.51eduline.com/index.php?app=course&mod=AdminVideo&act=export&tabHash=export" >导出</a></li>        </ul>
+    </div>
+
+    <form method="POST" action="http://127.0.0.1:8080/bunch/addbunch" id="detail_form" name="detail_form" onsubmit="return j_validateCallback(this,checkForm,post_callback)">
+        <input type="hidden" name="systemdata_list" value="video_Admin" class="s-txt">
+        <input type="hidden" name="systemdata_key" value="addVideo" class="s-txt">
+        <input type="hidden" name="pageTitle" value="添加课程" class="s-txt">
+        <input type="hidden" name="id" value="" />
+        <div class="form2">
+            <dl class="lineD" id="dl_video_title">
+                <dt><font color="red"> * </font>课程名称：</dt>
+                <dd>
+                    <input name="name" id="form_video_title" type="text" value="" class="s-txt">
+                </dd>
+            </dl>
+
+            <dl class="lineD">
+                <dt><font color="red"> * </font>课程分类：</dt>
+                <dd>
+                    <div id="video_level"></div>
+                    <select name="status">
+                        <option value="1">直播</option>
+                        <option value="2">点播</option>
+                    </select>
+                    <a></a>                </dd>
+            </dl>
+            <dl class="lineD" id="form_mhm_id">
+                <dt><font color="red"> * </font>所属机构：</dt>
+                <dd>
+                    <select name="courseorgid" id="courseorgid" class="mhm_select" onchange="queryteacherid(this.value)">
+                    </select>
+                </dd>
+            </dl>
+
+            <dl class="lineD" id="form_teacherlist">
+                <dt><font color="red"> * </font>讲师选择：</dt>
+                <dd>
+                    <select name="teacherid" id="teacherid" class="teacher_id_select" ></select>
+                </dd>
+            </dl>
+               <script type="text/javascript">
+                   $(function(){
+                       querycourseorgid();
+                   })
+                   function querycourseorgid(){
+                       $.ajax({
+                           url:'http://127.0.0.1:8080/bunch/findCouserorgBean',
+                           type:'get',
+                           success:function(data){
+                               var html = "<option value='-1'>请选择</option>";
+                               for (var i = 0; i < data.length; i++) {
+                                   html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+                               }
+                               $("#courseorgid").html(html);
+                               queryteacherid(data.id);
+                           }
+                       })
+                   }
+                   function queryteacherid(id){
+                       $.ajax({
+                           url:'http://127.0.0.1:8080/bunch/findteacheridBean',
+                           type:'get',
+                           data:{id:id},
+                           success:function(data){
+
+                               var html = "<option value='-1'>请选择</option>";
+                               for (var i = 0; i < data.length; i++) {
+                                   html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+                               }
+                               $("#teacherid").html(html);
+                           }
+                       })
+                   }
+
+
+               </script>
+            <dl class="lineD" id="form_listingtime">
+                <dt><font color="red"> * </font>上架时间：</dt>
+                <dd>
+                    <input name="addtime" type="text" value="" class="s-txt"  onfocus="core.rcalendar(this,'full');" readonly="readonly">
+                </dd>
+            </dl>
+
+            <dl class="lineD" id="form_uctime">
+                <dt><font color="red"> * </font>下架时间：</dt>
+                <dd>
+                    <input name="downtime" type="text" value="" class="s-txt" onfocus="core.rcalendar(this,'full');" readonly="readonly">
+                </dd>
+            </dl>
+
+            <dl class="lineD" id="form_v_price">
+                <dt><font color="red"> * </font>原价（市场价格）：</dt>
+                <dd>
+                    <input name="price" type="text" value="100" class="s-txt">元
+                </dd>
+            </dl>
+            <dl class="lineD" id="form_video_order_count_mark">
+                <dt>学习人数（营销）：</dt>
+                <dd>
+                    <input name="teacherid" type="text" value="100" class="s-txt">人
+                </dd>
+            </dl>
+
+            <dl class="lineD">
+                <dt>是否精选：</dt>
+                <dd>
+                    <input type="checkbox" id="doutique" name="doutique"  value="1">设置精选
+                </dd>
+            </dl>
+            <dl class="lineD" id="dl_is_charge">
+                <dt>是否免费：</dt>
+                <dd>
+                    <label><input type="radio" name="free" value="0" checked="checked" >否 </label>
+                    <label><input type="radio" name="free" value="1"  >是 </label>
+                    <br>
+                </dd>
+            </dl>
+
+            <div class="page_btm">
+                <input type="submit" class="btn_b" value="保存" >
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    function j_validateCallback(form, call, callback) {
+        var $form = $(form);
+        if (typeof call != 'undefined' && call instanceof Function) {
+            $i = call($form);
+            if (!$i) {
+                return false;
+            }
+        }
+        var _submitFn = function() {
+            $.ajax({
+                type: form.method || 'POST',
+                url: $form.attr("action"),
+                data: $form.serializeArray(),
+                dataType: "json",
+                cache: false,
+                success: function(xMLHttpRequest, textStatus, errorThrown) {
+                    if (typeof callback != 'undefined' && callback instanceof Function) {
+                        callback($form, xMLHttpRequest);
+                    }
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    ui.error("未知错误!");
+                }
+            });
+        }
+        _submitFn();
+        return false;
+    }
+
+
+    function post_callback(_formsa, data) {
+        if (data.status != undefined) {
+            if (data.status == '0') {
+                ui.error(data.info);
+            } else {
+                ui.success(data.info, {
+                    end: function() {
+                        window.location.href = U('course/AdminVideo/index') + "&tabHash=index";
+                    }
+                });
+            }
+        }
+    }
+    //删除视频
+    function deletevideo(key) {
+        if ('' == key) {
+            ui.error("视频不存在！");
+            return;
+        }
+        $.ajax({
+            type: 'POST',
+            url: "http://try.51eduline.com/index.php?app=course&mod=AdminVideo&act=deletevideo",
+            data: {
+                videokey: key
+            },
+            dataType: "json",
+            cache: false,
+            success: function(data) {
+                if (data.status == '0') {
+                    ui.error(data.info);
+                } else {
+                    $("#videokey").val(""); //设置videokey为空
+                    $("#video_upload_d").css("display", "block"); //显示上传框
+                    $("#form_submit").attr('disabled', "true"); //设置上传按钮为禁用
+                    ui.success(data.info);
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                ui.error("未知错误!");
+            }
+        });
+    }
+
+    function callback(data) {
+        $("#" + data.input_id + "").remove();
+        $("#image_" + data.input_id).append('<div id=' + data.input_id + '>' + '<img style="max-width:100px;padding:2px; border:1px solid #ccc" src=' + UPLOAD_URL + '/' + data.src + ' />' + '</div>').find('input:file').val('');
+        $("#" + data.input_id + "_ids").val(data.attach_id);
+    }
+
+    function filecallback(data) {
+        $("#old_coursefile_ids").remove();
+        $("#videofile_ids").val(data.attach_id);
+    }
+    // 初始化事件
+    $(function() {
+        $('#detail_form input:file').click(function() {
+            $('input:file').val('');
+        });
+        $('#original_recommend').change(function() {
+            var che = $("#original_recommend").attr("checked");
+            if (che == true) {
+                $("#re_sort").removeAttr("readonly");
+            } else {
+                $("#re_sort").attr("readonly", 'readonly');
+            }
+        });
+        $('#best_recommend').change(function() {
+            var che = $("#best_recommend").attr("checked");
+            if (che == true) {
+                $("#be_sort").removeAttr("readonly");
+            } else {
+                $("#be_sort").attr("readonly", 'readonly');
+            }
+        });
+        $('#is_tlimit').change(function() {
+            var che = $("#is_tlimit").attr("checked");
+            if (che == true) {
+                $("#form_limit_discount,#form_starttime,#form_endtime").show();
+                $("#limit_discount,#starttime,#endtime").removeAttr("readonly");
+            } else {
+                $("#form_limit_discount,#form_starttime,#form_endtime").hide();
+                $("#form_limit_discount,#form_starttime,#endtime").attr("readonly", "readonly");
+                $("#limit_discount,#starttime,#endtime").val('');
+            }
+        });
+
+        $('.mhm_select').click(function() {
+            if ($('.mhm_select option:selected').val() != 0) {
+                $.ajax({
+                    type: 'POST',
+                    url: "http://try.51eduline.com/index.php?app=course&mod=AdminVideo&act=findSchoolTeacher",
+                    data: {
+                        mhm_id: $('.mhm_select option:selected').val()
+                    },
+                    dataType: "json",
+                    cache: false,
+                    success: function(data) {
+                        $('#form_teacherlist').html(data.info).show();
+                    }
+                });
+            } else {
+                $('#form_teacherlist').hide();
+            }
+        });
+        var id = "{Think.get.id}";
+        if (id != 0) {
+            var mhm_id = $('.mhm_select option:selected').val();
+            if (mhm_id != 0) {
+                if (mhm_id != 0) {
+                    $.ajax({
+                        type: 'POST',
+                        url: "http://try.51eduline.com/index.php?app=course&mod=AdminVideo&act=findSchoolTeacher",
+                        data: {
+                            mhm_id: mhm_id,
+                            teacher_id: $('.teacher_id_select option:selected').val()
+                        },
+                        dataType: "json",
+                        cache: false,
+                        success: function (data) {
+                            $('#form_teacherlist').html(data.info).show();
+                        }
+                    });
+                } else {
+                    $('#form_teacherlist').hide();
+                }
+            }
+        }
+    });
+</script>
+
+<script type="text/javascript">
+    document.onkeydown=function (e) {
+        e=window.event||e;
+        var key = e.keyCode;
+        if ((e.ctrlKey && key == 82) || key == 116) {
+            parent.MainIframe.location.reload();
+            if(document.all) {
+                e.keyCode = 0;
+                e.returnValue = false;
+            }else {
+                e.cancelBubble = true;
+                e.preventDefault();
+            }
+        }
+    }
+    /**
+     * 初始化对象
+     */
+//表格样式
+    $(document).ready(function(){
+        admin.bindTrOn();});
+</script>
+
+</body>
+</html>

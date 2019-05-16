@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="../js/jquery.min.js"></script>
+    <link href="../apps/admin/_static/css/admin.css" rel="stylesheet" type="text/css">
+    <script>
+        /**
+         * 全局变量
+         */
+        var SITE_URL  = 'http://try.51eduline.com';
+        var THEME_URL = 'http://try.51eduline.com/addons/theme/stv1/_static';
+        var APPNAME   = 'course';
+        var UPLOAD_URL ='http://try.51eduline.com/data/upload';
+        var MID		  = '1042';
+        var UID		  = '1042';
+        var initNums  =  '140';
+        // Js语言变量
+        var LANG = new Array();
+        var info = {icon:0,time:1800,btn:false,title:'',closeBtn:0};
+        var success = {icon:1,time:1800,btn:false,title:'',closeBtn:0};
+        var error = {icon:2,time:1800,btn:false,title:'',closeBtn:0};
+    </script>
+    <!-- 引入juquery -->
+    <!-- 引入bootstrap的css、js -->
+
+    <script type="text/javascript" src="../bootstarp/bootstrap3/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../bootstarp/bootstrap3/css/bootstrap.css">
+    <!--引入table-->
+    <script type="text/javascript" src="../bootstarp/bootstrap-table/bootstrap-table.js"></script>
+    <link rel="stylesheet" href="../bootstarp/bootstrap-table/bootstrap-table.css">
+    <script type="text/javascript" src="../bootstarp/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <!--引入bootbox-->
+    <script type="text/javascript" src="../bootstarp/bootstrap-bootbox/bootbox.js"></script>
+    <!-- 引入日期的css、js -->
+    <link rel="stylesheet" href="../bootstarp/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
+    <script type="text/javascript" src="../bootstarp/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/core.js"></script>
+    <script type="text/javascript" src="../apps/admin/_static/js/module.js"></script>
+    <script src="../addons/theme/stv1/_static/js/common.js"></script>
+    <script src="../addons/theme/stv1/_static/js/module.common.js"></script>
+    <script type="text/javascript" src="../apps/admin/_static/js/admin.js"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/ui.layer.js"></script>
+    <!--非admin应用的后台js脚本统一写在  模板风格对应的app目录下的admin.js中-->
+    <script type="text/javascript" src="../apps/course/_static/js/admin.js"></script>
+    <script type="text/javascript" src="../uploadify/jquery.uploadify.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../uploadify/uploadify.css">
+    <style>
+        @font-face {font-family: 'iconfontNEW';src: url('http://try.51eduline.com/addons/theme/stv1/_static/icon/iconfontNEW.woff?v={$site.sys_version}');}
+        .iconfontNEW{font-family: iconfontNEW;font-style: normal;}
+    </style>
+
+</head>
+<body>
+<style>
+    .clewbox{
+        position: absolute;
+        top: 28px;
+        left: 250px;
+    }
+    #attach_upload_tool{
+        position: relative;
+    }
+</style>
+<div id="container" class="so_main">
+    <div class="tit_tab">
+        <ul>
+            <li><a href="../admin/bunch_planting.html?app=course&mod=AdminVideo&act=index&tabHash=index" >已审</a></li><li><a href="http://try.51eduline.com/index.php?app=course&mod=AdminVideo&act=unauditList&tabHash=unauditList" >待审</a></li><li><a href="http://try.51eduline.com/index.php?app=course&mod=AdminVideo&act=recycle&tabHash=recycle" >回收站</a></li><li><a href="http://try.51eduline.com/index.php?app=course&mod=AdminVideo&act=addVideo&tabHash=addVideo" class="on">添加</a></li><li><a href="http://try.51eduline.com/index.php?app=course&mod=AdminVideo&act=videoLib&tabHash=videoLib" >课件库</a></li><li><a href="http://try.51eduline.com/index.php?app=course&mod=AdminVideo&act=problemQuestionBank&tabHash=problemQuestionBank" >视频弹题题库</a></li><li><a href="http://try.51eduline.com/index.php?app=course&mod=AdminVideo&act=videoLibVerify&tabHash=videoLibVerify" >CC待同步视频库</a></li><li><a href="http://try.51eduline.com/index.php?app=course&mod=AdminVideo&act=export&tabHash=export" >导出</a></li>        </ul>
+    </div>
+
+    <form method="POST" action="http://127.0.0.1:8080/user/adduser" id="detail_form" name="detail_form" onsubmit="return j_validateCallback(this,checkForm,post_callback)">
+        <input type="hidden" name="systemdata_list" value="video_Admin" class="s-txt">
+        <input type="hidden" name="systemdata_key" value="addVideo" class="s-txt">
+        <input type="hidden" name="pageTitle" value="添加课程" class="s-txt">
+        <input type="hidden" name="id" value="" />
+        <div class="form2">
+            <dl class="lineD" id="dl_video_title">
+                <dt><font color="red"> * </font>用户名：</dt>
+                <dd>
+                    <input name="name" id="form_video_title" type="text" value="" class="s-txt">
+                </dd>
+            </dl>
+            <dl class="lineD" id="dl_video_title2">
+                <dt><font color="red"> * </font>手机号：</dt>
+                <dd>
+                    <input name="phone" id="form_video_title2" type="text" value="" class="s-txt">
+                </dd>
+            </dl>
+            <dl class="lineD" id="dl_video_title3">
+                <dt><font color="red"> * </font>密码：</dt>
+                <dd>
+                    <input name="password" id="form_video_title3" type="password" value="" class="s-txt">
+                </dd>
+            </dl>
+            <dl class="lineD" id="dl_is_charge">
+                <dt>性别：</dt>
+                <dd>
+                    <label><input type="radio" name="sex" value="0" >男 </label>
+                    <label><input type="radio" name="sex" value="1"  >女 </label>
+                    <br>
+                </dd>
+            </dl>
+            <dl class="lineD" id="form_mhm_id">
+                <dt><font color="red"> * </font>所属机构：</dt>
+                <dd>
+                    <select name="courseorgid" id="courseorgid" class="mhm_select" onchange="queryteacherid(this.value)">
+                    </select>
+                </dd>
+            </dl>
+            <script type="text/javascript">
+                $(function(){
+                    querycourseorgid();
+                })
+                function querycourseorgid(){
+                    $.ajax({
+                        url:'http://127.0.0.1:8080/bunch/findCouserorgBean',
+                        type:'get',
+                        success:function(data){
+                            var html = "<option value='-1'>请选择</option>";
+                            for (var i = 0; i < data.length; i++) {
+                                html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+                            }
+                            $("#courseorgid").html(html);
+                            queryteacherid(data.id);
+                        }
+                    })
+                }
+            </script>
+
+
+            <div class="page_btm">
+                <input type="submit" class="btn_b" value="保存" >
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+</body>
+</html>

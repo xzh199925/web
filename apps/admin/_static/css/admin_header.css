@@ -1,0 +1,59 @@
+@charset "utf-8";
+/* CSS Document */
+
+body { font:12px Arial, Verdana, Helvetica, sans-serif; text-align:center; color:#333; }
+body, div, dl, dt, dd, ul, ol, li, pre, form, fieldset, blockquote, h1, h2, h3, h4, h5, h6 { padding:0; margin:0 }
+
+table, td, tr, th { font-size:12px }
+input, select { vertical-align: middle; }
+table { margin:0 auto;width: 100%;height:100vh;}
+img { border:none }
+ol, ul, li{ list-style:none }
+em { color:#999; font-family: Tahoma, Verdana, helvetica; font-size: 10px; font-style: normal; white-space: nowrap; }
+body{background-color: #edf1f7;}
+
+/* 连接 */
+a { color:#005fab; text-decoration:none }
+a:link {text-decoration:none }
+a:visited {text-decoration:none }
+a:hover {text-decoration:none; }
+
+/*头部*/
+.header { height:50px;text-align:left; margin:0 auto;  z-index:1; position:relative }
+.header .logo { width:160px;height:51px;text-align: center; float: left;}
+.header .logo img{vertical-align:-8px;margin-right:5px}
+.header .logo a { display: block; text-decoration: none;color:white;font-size:20px;line-height:52px;}
+.header .logo a .icon{font-size:26px;color:white;padding:0 10px 0 0;}
+.header .main_nav { float: left;margin-top: 5px;}
+.header .main_nav a {display:inline-block; font-size:18px; text-align:center; line-height:46px;padding:0 25px;}
+.header .main_nav a:hover{color:white;}
+.header .main_nav a.on {border-radius:3px 3px 0 0;color:#3695ff;background: #fff;}
+.header .nav_sub { text-align:right; color:#fff; position:absolute; right:10px; line-height: 60px; white-space:nowrap;}
+.header .nav_sub a { color:#fff; }
+.header_line { background-color:#dee4ed; height:9px; padding-left:200px }
+.header_line span { background:#dee4ed url(image/top_line.gif) repeat-x 0 0; height:9px; display:block; overflow:hidden; }
+/*左侧菜单*/
+.LeftMenu { height: auto; text-align:left;width: 160px;}
+.MenuList ul, .MenuList li { list-style-type: none; float:left; width:100%;overflow: hidden;text-indent: 0;}
+.MenuList a { display: block; width: 100%; line-height: 32px; float:left;line-height: 40px; }
+.MenuList a i{font-size:14px; margin-left: 30px;margin-right: 10px;}
+.MenuList a i.on{transform:rotate(90deg);-ms-transform:rotate(90deg); 	/* IE 9 */-moz-transform:rotate(90deg); 	/* Firefox */-webkit-transform:rotate(90deg); /* Safari 和 Chrome */-o-transform:rotate(90deg); 	/* Opera */}
+.MenuList a em{float:right;margin:0 20px 0 0;color:#c8cee0;font-size:16px;}
+.submenu { display: none; }
+.submenu li a {line-height:40px;font-size: 14px;text-align: left;padding-left:33px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
+.submenu li a.on{width: 50px;text-indent: 0;}
+.submenu li { color: #323944;}
+.submenuA { color: #FFFFFF;text-indent: 0;}
+.submenuB { color: #3695ff!important; background-color:#FFFFFF;background-image: url(../images/sanjiao.png); background-repeat: no-repeat;  background-position: right;}
+.treemenu { text-indent: 0;color: #FFFFFF; /*background: url(image/ArrOn.png) no-repeat;*/ text-indent: 25px; }
+a.actuator:link, a.actuator:visited, a.actuator:active { color: white; margin: 0px; padding: 0px; font-size:14px;}
+.treemenu a:hover{text-decoration: none;color:white;}
+a.actuator:hover em{color:#000;}
+#switchPoint { cursor: pointer; }
+
+.g-icon img{margin-top: 7px;cursor: pointer;width: 14px;height: 14px;}
+.g-icon{text-align: center;height: 30px;line-height: 30px;background: #ffffff;}
+#FrameTitle{width: 160px;border-right:1px solid #e5e5e5;}
+.treemenu .text{display: inline-block;;}
+.treemenu .second_text{overflow: hidden;white-space: nowrap;text-overflow: ellipsis;text-indent: 20;}
+.LeftMenu .MenuList{width: 100%;overflow: hidden;}

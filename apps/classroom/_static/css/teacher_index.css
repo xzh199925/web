@@ -1,0 +1,52 @@
+@charset "utf-8";
+.content {background-color: #f0f0f2;}
+.teacher-box .card-body dd{min-height:20px;font-size:12px;}
+.teacher-box .card-body span{float: left;text-align: center;font-size:14px;line-height: 46px;color: #656565;padding: 0 20px;}
+.teacher-box .card-body ul{position:relative;float:left;width:100%;background: #fff;}
+.teacher-box .card-body ul li{float:left;margin: 10px 5px 10px;;padding: 3px 15px;border-radius: 4px;}
+.teacher-box .card-body ul li a:hover{color:##00BED4;}
+.teacher-box .card-body ul li a{padding:2px 4px;color: #888;font-size: 14px;}
+.teacher-box .card-body ul li.selected a{border-radius:4px;color:#fff;}
+.teacher-box .card-body .subs{position:relative;clear:both;margin:10px 0 10px 80px;max-width:990px;background:#fff;}
+.teacher-box .card-body .subs .subs{position:relative;margin:10px 20px 10px 30px;}
+.teacher-box .card-body .subs .sub-course{float:none;padding-right:14px;width:auto;}
+.teacher-box .card-body .subs .sub-course li{float:none;display:inline-block;margin:0 0 4px 14px;}
+.teacher-box .card-body .tit{display:inline-block;color:#333;}
+.teacher-box .card-body .tit i{float:left;margin-top:3px;margin-left:3px;width:12px;height:12px;background-position:-519px -119px;}
+.teacher-box .card-body .con{position:absolute;top:20px;z-index:2;display:none;padding:10px 0 0 10px;width:120px!important;border:1px solid #ebeced;background:#fff;}
+.teacher-box .card-body .on .con{display:block;}
+.teacher-box .card-body .con li{float:none;display:block;}
+.teacher-box .card-body .con li.active a{margin-left:3px;border:1px solid #00BED4;border-radius:2px;background:#00BED4;color:#fff;}
+.teacher-box .card-body .tit span{margin-right:0;width:auto;}
+.teacher-box .card-body .tit .dh{margin:0 0 0 4px;}
+.teacher-box .card-body .tit a{float:left;margin-left:3px;padding:3px 4px;border:1px solid #00BED4;-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;background:#00BED4;color:#fff!important;line-height:1;}
+.card-body{ width:100%;border-radius:5px;color:#333;float: left;font-size:14px;line-height:20px;background: #fff;display: grid;}
+.card-body input{margin:-2px 3px 0 0;}
+.card-body .selected{background-color:#00BED4; }
+.card-body .selected a{color:#fff;padding: 3px 15px; }
+.class_left{float:left;margin-bottom:30px;width:100%;}
+.class_left{margin-bottom:30px;}
+.class_left .card-main{margin-top:30px;float: left;}
+.content-card .card-body .nav-item.active,.content-card .card-body .nav-item:hover{border-color:#eee;background-color:#fff;}
+.content-card .card-body .nav-item label:hover,.content-card .card-body .nav-item.active a,.content-card .card-body .nav-item:hover a{color:#00BED4;}
+.content-card .card-body .nav-item{position:relative;float:left;margin-left:-1px;padding:0 14px;border:solid 1px #f7f7f7;border-width:0 1px;color:#888;vertical-align:top;}
+.content-card .card-body .top-pager span{margin:0 5px;}
+.content-card .card-body .top-pager i{width:12px;height:12px;}
+.content-card .card-body .top-pager .icon-prev{background-position:-469px -69px;}
+.content-card .card-body .top-pager .icon-next{background-position:-519px -69px;}
+.content-card .card-body .top-map,.content-card .card-body .top-pager{float:right;}
+.content-card .card-body dt{height:38px;line-height:38px;}
+.content-card .card-main {float: left;width: 100%;margin-top: 30px;}
+.content-card .card-main ul{margin-right: -30.5px;}
+.teacher_list{margin-right: -30.5px;}
+.teacher_list li{float: left;overflow: hidden;border-radius: 4px;margin: 0 30.5px 30px 0;width: 275px;height:300px;border: solid 1px #eee;transition: 0.2s;-webkit-transition:0.2s;-moz-transition:0.2s;-o-transition:0.2s;-ms-transition:0.2s; background: #fff;text-align: center;}
+.teacher_list li:hover{border: 1px solid #00BED4;background: #fafeff;}
+.teacher_list li:hover .teacher_name{color:#00BED4 };
+.teacher_list li:hover .teacher_picture a img{transform: rotateY(180deg);-moz-transform: rotateY(180deg);-webkit-transform: rotateY(180deg);-o-transform: rotateY(180deg);-ms-transform: rotateY(180deg);}
+.teacher_list li:hover .teacher_picture{transform: rotateY(180deg);-moz-transform: rotateY(180deg);-webkit-transform: rotateY(180deg);-o-transform: rotateY(180deg);-ms-transform: rotateY(180deg);}
+.teacher_list li .teacher_picture{position: relative;overflow: hidden;width: 120px;height: 120px;border-radius: 50%;margin: 20px auto 0px;transition:.5s;-webkit-transition:0.5s;-moz-transition:0.5s;-o-transition:0.5s;-ms-transition:0.5s;}
+.teacher_list li .teacher_picture a{display: block;width: 100%;height: 100%;}
+.teacher_list li .teacher_picture img{width: 120px;height: 120px;transition:0.5s;-webkit-transition:0.5s;-moz-transition:0.5s;-o-transition:0.5s;-ms-transition:0.5s; border-radius: 50%;}
+.teacher_list li .teacher_name{font-size: 18px;color: #333;text-align: center;margin-top: 16px;}
+.teacher_list li .shcool{margin: 16px 0 20px 0;font-size: 14px;color: #888;text-align: center;}
+.teacher_list li .introduce{ padding-top: 16px;margin: 0 auto;height: 40px;width: 255px;text-align: center;font-size: 14px;color: #909090;overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;border-top: 1px solid #f0f3f5;}

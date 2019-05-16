@@ -1,0 +1,354 @@
+
+<!DOCTYPE HTML>
+<!DOCTYPE html PUBLIC "" ><HTML><HEAD><META content="IE=11.0000"
+                                            http-equiv="X-UA-Compatible">
+
+    <META charset="UTF-8">     <TITLE>Eduline —
+        Eduline在线教育平台|在线网校系统|在线教育系统|在线教育解决方案|在线教育系统|在线学习系统|在线培训系统</TITLE>
+    <META name="keywords" content="在线教育，教育系统，在线教育系统，在线教育平台，在线教育网站，在线教育解决方案，网络教学系统，直播系统，点播系统，录播系统，在线约课，在线考试，在线题库，题库系统，在线教育app，在线网校系统，网校系统，培训系统，企业培训系统，企业内训系统，在线培训系统，在线教育系统，在线学习系统，慕课系统，教育系统源码，教育源码，教育源码">
+
+    <META name="description" content="Eduline多机构在线教育交易平台">
+    <META name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+
+    <META http-equiv="X-UA-Compatible" content="IE=edge">
+    <META http-equiv="Access-Control-Allow-Origin" content="*">
+    <LINK href="../data/upload/2018/0808/14/5b6a91bca0b3b.ico" rel="shortcut icon" type="image/x-icon">     <!-- 站点css -->     <!--<link href="http://try.51eduline.com/addons/theme/stv1/_static/css/css.php?t=css&f=common_new.css,basic_new.css,common.css,index.css,logincss.css,media.css,style.css,style_add.css,style_new.css,wenda.css,_header_footer.css&v=20180814.css" rel="stylesheet" type="text/css" />-->
+    <link rel="stylesheet" type="text/css" href="../addons/theme/stv1/_static/css/rest.css?v=20180814">
+    <link rel="stylesheet" type="text/css" href="../addons/theme/stv1/_static/icon/iconfont.css?v=20180814">
+    <link rel="stylesheet" type="text/css" href="../addons/theme/stv1/_static/css/common.css?v=20180814">
+    <link rel="stylesheet" type="text/css" href="../addons/theme/stv1/_static/css/index.css?v=20180814">
+    <link rel="stylesheet" type="text/css" href="../addons/theme/stv1/_static/css/style.css?v=20180814">
+    <link rel="stylesheet" type="text/css" href="../addons/theme/stv1/_static/js/tbox/box.css?v=20180814">
+    <STYLE>
+        @font-face {font-family: 'iconfontNEW';src: url('http://try.51eduline.com/addons/theme/stv1/_static/icon/iconfontNEW.woff?v={$site.sys_version}');}
+        .iconfontNEW{font-family: iconfontNEW;}
+    </STYLE>
+    <!--<script src="http://try.51eduline.com/addons/theme/stv1/_static/js/js.php?t=js&f=jquery.form.js,common.js,core.js,module.js,module.common.js,jwidget_1.0.0.js,jquery.atwho.js,jquery.caret.js,ui.core.js,ui.draggable.js,plugins/core.comment.js,plugins/core.digg.js&v=20180814.js"></script>-->
+
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/jquery.atwho.js"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/jquery.caret.js"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/core.js?v=20180814"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/module.js?v=20180814"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/module.common.js?v=20180814"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/common.js?v=20180814"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/script.js?v=20180814"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/user.js?v=20180814"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/plugins/core.comment.js?v=20180814"></script>
+
+    <SCRIPT>
+        //全局变量
+        var SITE_URL  = 'http://try.51eduline.com';
+        var UPLOAD_URL= 'http://try.51eduline.com/data/upload';
+        var THEME_URL = 'http://try.51eduline.com/addons/theme/stv1/_static';
+        var APPNAME   = 'basic';
+        var MID		  = '0';
+        var UID		  = '0';
+        var initNums  =  '140';
+        var SYS_VERSION = '20180814';
+        var _ROOT_    = 'http://try.51eduline.com';
+
+        //注册登录模板
+        var REG_LOGIN="http://try.51eduline.com/index.php?app=basic&mod=Passport&act=regLogin";
+        //邮箱验证地址
+        var CLICK_EMIL="http://try.51eduline.com/index.php?app=basic&mod=Passport&act=clickEmail";
+        //异步注册地址
+        var REG_ADDRESS="http://try.51eduline.com/index.php?app=basic&mod=Passport&act=ajaxReg";
+        //异步登录
+        var LOGIN_ADDRESS="http://try.51eduline.com/index.php?app=basic&mod=Passport&act=ajaxLogin";
+        //退出登录
+        var LOGINOUT_ADDRESS="http://try.51eduline.com/index.php?app=basic&mod=Passport&act=logout";
+        //手机号正则
+        var PHONE_MATCH = /^1[3|4|5|6|7|8|9][0-9]\d{8}$/;
+        //邮箱正则
+        var EMAIL_MATCH = /([\w\-\.]+\@[\w\-\.]+\.[\w\-\.]+)/;
+
+        $(function(){
+            $('.backtop').click(function(){
+                $('body,html').animate({scrollTop:0},300);
+                return false;
+            });
+            $('.full-course').hover(function(){
+                $(this).addClass('hover');
+            },function(){
+                $(this).removeClass('hover');
+            });
+
+            $(".search_index_val span a").click(function(){
+                var span_Val = $(this).text();
+                var a_Attr = $(this).attr("attr");
+                $(".search_index_val p").html(span_Val);
+                $("#search_cate").val(a_Attr);
+                $(".search_index #search_combo_input").attr("placeholder","搜索"+span_Val);
+                $(this).hide().siblings().show();
+            })
+
+            $(".search_index input").focus(function(){
+                $(".search_index").css("width","250px");
+                $(".search_index input").css("width","140px");
+            })
+
+        });
+
+        $(window).scroll(function(){
+            if($(window).scrollTop()>300){
+                $('.backtop').fadeIn(300);
+            }else{
+                $('.backtop').fadeOut(200);
+            }
+        });
+
+        if(navigator.userAgent.match(/(iPhone|Android|ios)/i)) {
+            $(window).load(function () {
+                $('.modular,.logos,.window-box').show();
+                $('.users').attr('style','display:block');
+            });
+        }
+
+        function closeMsg(obj){
+            $(".news-msg").remove();
+        }
+    </SCRIPT>
+
+    <SCRIPT src="..\addons\theme\stv1\_static\js\ui.layer.js" type="text/javascript"></SCRIPT>
+    <!-- 站点js -->     <!--[if lt IE 9]>
+    <script src="../addons/theme/stv1/_static/js/lazyload/html5shiv.js"></script>
+    <![endif]-->
+    <!--[if lt IE 9]><script src="js/html5.js" type="text/javascript"></script><![endif]-->
+    <META name="GENERATOR" content="MSHTML 11.00.10570.1001"></HEAD>
+<BODY>
+<STYLE>
+    .content{background: #fff;} .wrap{margin-top:0;}
+</STYLE>
+
+<DIV class="header">
+    <DIV class="loginhead">
+        <DIV class="wrap">
+            <DIV class="fr" style="color: rgb(255, 255, 255); font-size: 14px; margin-top: 31px;">已有账号？<A
+                    style="color: rgb(255, 255, 255); padding-left: 15px; margin-left: 15px; border-left-color: rgb(160, 160, 160); border-left-width: 1px; border-left-style: solid;"
+                    href="http://try.51eduline.com/login.html">登录</A></DIV>
+            <DIV class="logo"><A title="Eduline在线教育系统" href="file:///C:/"><IMG width="150"
+                                                                               height="52" style="margin: 4px 0px;" src="../data/upload/2018/12/045c065a09b4e79.png"></A></DIV></DIV></DIV></DIV><!--header end-->
+<SCRIPT>
+    var CLICK_VERIFY="http://try.51eduline.com/index.php?app=basic&mod=Passport&act=clickVerify";
+    var CLICK_PHONE="http://try.51eduline.com/index.php?app=basic&mod=Passport&act=clickPhone";
+    var CLICK_PHONEVER="http://try.51eduline.com/index.php?app=basic&mod=Passport&act=clickPhoneVer";
+    var SETUSERFACE="http://try.51eduline.com/index.php?app=basic&mod=Passport&act=setUserFace";
+    var SITE_KEYWORD = "Eduline";
+</SCRIPT>
+
+<DIV class="content">
+    <DIV class="wrap">
+        <DIV class="logincontent reg_set_info">
+            <DIV class="title"><EM></EM><SPAN style="color: red;">注册账号登录后，鼠标放在用户名
+，即可体验“后台管理” </SPAN></DIV>
+            <FORM class="loginform"><INPUT id="this_mhm_id" type="hidden" value="37">
+                <INPUT id="invite_code" type="hidden">
+                <DIV id="phoneReg" style="display: block;">
+                    <DL>
+                        <DT><SPAN>*</SPAN>手机:</DT>
+                        <DD><INPUT class="inp" id="prphone" type="text" placeholder="请输入手机号" value="">
+                        </DD></DL>
+                    <DL>
+                        <DT><SPAN>*</SPAN>验证码:</DT>
+                        <DD><INPUT class="inp" id="prverify" style="width: 145px;" type="text" placeholder="请输入收到的验证码" value="">
+                            <A class="yzm width80" href="javascript:getSms()"
+                            >获取验证码</A>                                 <SPAN class="width97"
+                                                                             style="display: none;"><A id="dtime"></A>后可重新发送</SPAN>
+                        </DD></DL>
+                    <DL>
+                        <DT><SPAN>*</SPAN>设置密码:</DT>
+                        <DD>
+                            <INPUT class="inp" id="prpassword" type="password" placeholder="请设置登录密码，6-20个字符" value="">
+                        </DD>
+                    </DL>
+                    <DL>
+                        <DT>
+                            <SPAN>*</SPAN>确认密码:</DT>
+                        <DD>
+                            <INPUT class="inp" id="prpassword2" type="password" placeholder="请设置登录密码，6-20个字符" value="">
+                        </DD>
+                    </DL>
+                    <DL>
+                        <DD>
+                            <P></P><LABEL class="check"><INPUT id="qqq" name="agreement" type="checkbox"
+                                                              value="1"  checked="">我已阅读并同意<A style="color: rgb(24, 142, 238);" href="http://try.51eduline.com/single/reg.html"
+                                                                                    target="_blank">《Eduline网站注册条款》</A></LABEL>
+                        </DD></DL>
+                    <DL>
+                        <DD><A class="btn"  href="javascript:getPhoneReg();"
+                               type="button">立即注册</A></DD></DL></DIV></FORM></DIV></DIV></DIV><!--itembox end--> <!--footer start-->
+<DIV class="post-service yensen">
+    <DIV class="other-service">
+        <DIV class="service-class" style="width: 160px;"><A href="javascript:;" target="_blank"><SPAN>服务规则</SPAN></A><A
+                href="http://try.51eduline.com/single/1.html" target="_blank">绑卡验证协议</A><A href="http://try.51eduline.com/single/2.html"
+                                                                                           target="_blank">会员服务协议</A><A href="http://try.51eduline.com/single/23.html"
+                                                                                                                        target="_blank">合作专区</A><A href="http://try.51eduline.com/single/25.html"
+                                                                                                                                                   target="_blank">机构帮助</A><A href="http://try.51eduline.com/single/26.html"
+                                                                                                                                                                              target="_blank">机构入驻协议</A></DIV>
+        <DIV class="service-class" style="width: 160px;"><A href="javascript:;" target="_blank"><SPAN>机构入驻</SPAN></A><A
+                href="http://try.51eduline.com/single/4.html" target="_blank">第一步</A><A href="javascript:;"
+                                                                                        target="_blank">机构入驻</A><A href="http://try.51eduline.com/single/5.html" target="_blank">第二步</A><A
+                href="http://try.51eduline.com/single/6.html" target="_blank">第三步</A><A href="javascript:;"
+                                                                                        target="_blank">第四步</A></DIV>
+        <DIV class="service-class" style="width: 160px;"><A href="javascript:;" target="_blank"><SPAN>用户注册</SPAN></A><A
+                href="http://try.51eduline.com/single/9.html" target="_blank">第一步</A><A href="http://try.51eduline.com/single/10.html"
+                                                                                        target="_blank">第二步</A><A href="http://try.51eduline.com/single/11.html" target="_blank">第三步</A><A
+                href="javascript:;" target="_blank">第四步</A></DIV>
+        <DIV class="service-class" style="width: 160px;"><A href="javascript:;" target="_blank"><SPAN>名师签约</SPAN></A><A
+                href="http://try.51eduline.com/single/13.html" target="_blank">联系平台</A><A href="http://try.51eduline.com/single/14.html"
+                                                                                          target="_blank">后台审核</A><A href="http://try.51eduline.com/single/15.html"
+                                                                                                                     target="_blank">签约成功</A></DIV>
+        <DIV class="service-class" style="width: 160px;"><A href="javascript:;" target="_blank"><SPAN>平台流程</SPAN></A><A
+                href="javascript:;" target="_blank">个人用户</A><A href="http://try.51eduline.com/single/18.html"
+                                                               target="_blank">机构（名师）用户</A><A href="http://try.51eduline.com/single/19.html"
+                                                                                              target="_blank">第二级页面展示</A></DIV>
+        <DIV class="tel-box">
+            <DIV class="week">关注官方微信</DIV>
+            <DIV class="tel-icon"><IMG src="../data/upload/2018/0808/14/5b6a92e7ca6bf_120_120_120_120.png">
+            </DIV></DIV></DIV>
+    <DIV class="copyright-box">Copyright 2017 seition All Rights Reserved  |  蜀ICP 备
+        16004612号    </DIV></DIV><!--footer end-->
+<DIV class="sidernav">
+    <UL>
+        <LI><A href="javascript:;"><I class="icon-01"></I></A>
+            <DIV class="qq_and_phone_info_div">
+                <DIV class="siderbox">
+                    <P>分享到：</P>
+                    <DIV class="bdsharebuttonbox"><!-- <a data-cmd="more" class="bds_more " href="#"></a> -->
+                        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                        <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                        <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+                        <SCRIPT type="text/javascript">
+                            window._bd_share_config = {
+                                "common": {
+                                    "bdSnsKey": {
+                                        "tqq": "https://share.baidu.com/code#"
+                                    },
+                                    "bdText": "",
+                                    "bdMini": "2",
+                                    "bdMiniList": ["tsina", "weixin", "qzone", "sqq", "renren", "copy"],
+                                    "bdPic": "",
+                                    "bdStyle": "1",
+                                    "bdSize": "24"
+                                },
+                                "share": {},
+                                "image": {
+                                    "viewList": ["tsina", "weixin", "qzone", "sqq"],
+                                    "viewText": "分享到：",
+                                    "viewSize": "0"}
+                            };
+                            with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement(
+                                'script')).src = '../addons/theme/stv1/_static/js/baiduShare/static/api/js/share.js?cdnversion=' +
+                                ~(-new Date() / 36e5)];
+
+                        </SCRIPT>
+                    </DIV></DIV></DIV></LI><!--<li>-->         <!--<a href="javascript:;">-->
+        <!--<i class="icon-02"></i>-->         <!--</a>-->         <!--<div class="xiala">-->
+        <!--<img src="http://try.51eduline.com/data/upload//_120_120." alt="">-->
+        <!--<p>扫描下载APP</p>-->         <!--</div>-->         <!--</li>-->
+
+        <LI><A href="http://wpa.qq.com/msgrd?v=3&amp;uin=3132698449&amp;site=http://try.51eduline.com&amp;menu=yes"
+               target="_blank"><I class="icon-03"></I>             </A>
+            <DIV class="qq_and_phone_info_div">
+                <DIV class="siderbox">
+                    <DL>
+                        <DT class="qq_info_dt"><A href="http://wpa.qq.com/msgrd?v=3&amp;uin=3132698449&amp;site=http://try.51eduline.com&amp;menu=yes"
+                                                  target="_blank"><SPAN class="icon-qq"></SPAN>QQ在线咨询</A></DT></DL>
+                    <DL>
+                        <DT><SPAN class="icon-ph"></SPAN>咨询热线：</DT>
+                        <DD style="color: rgb(24, 142, 238);">010-5334-5805</DD>
+                        <DD style="color: rgb(37, 193, 81);">136-2125-8074</DD></DL></DIV></DIV></LI>
+        <LI><A href="javascript:;"><I class="icon-05"></I>             </A>
+            <DIV class="xiala"><IMG alt="" src="../data/upload/2018/0808/14/5b6a92e7ca6bf_120_120_120_120.png">
+
+                <P>扫一扫关注官方<SPAN style="color: rgb(251, 125, 48);">微博</SPAN></P></DIV></LI>
+        <LI><A href="javascript:;"><I class="icon-06"></I>             </A>
+            <DIV class="xiala"><IMG alt="" src="../data/upload/2018/0808/14/5b6a92f043126_120_120_120_120.jpg">
+
+                <P>扫一扫关注官方<SPAN style="color: rgb(139, 218, 100);">微信</SPAN></P></DIV></LI>
+        <LI class="backtop"><A href="javascript:;"><I
+                class="icon-07"></I></A></LI></UL></DIV>
+<SCRIPT src="http://try.51eduline.com/online_check.php?uid=0&uname=&mod=Passport&app=basic&act=reg&action=trace"></SCRIPT>
+
+<script src="../addons/theme/stv1/_static/js/lazyload/jquery.lazyload.min.js" type="text/javascript"></script>
+
+<SCRIPT type="text/javascript">
+    $(function () {
+        // 初始化
+        $("img.lazyload").lazyload({
+            effect: "fadeIn",
+            placeholder: "../addons/theme/stv1/_static/images/loading_image.png"
+        });
+    });
+</SCRIPT>
+
+<SCRIPT>
+    $(document).keydown(function(event){
+        if($("#transparent").css("display")=="block"){
+            if(event.keyCode == 13){
+                logSub();
+            }
+        }
+    });
+
+    function getSms(){
+        var  phoneId=$("#prphone").val();
+        alert(phoneId)
+        if(phoneId.length == 0){
+            ui.error('手机号不能为空');
+            return false;
+        }
+        if(phoneId.length != 11){
+            ui.error('请填写正确的手机号');
+            return false;
+        }
+        $.ajax({
+            url:"http://127.0.0.1:8080/user/gainMessgerCode",
+            data:{phone:phoneId},
+            type:"post",
+            dataType:'json',
+            success:function (data) {
+                if(data=="11111"){
+                 alert("短信发送成功！！！");
+                }
+            }
+        })
+    }
+    //验证手机信息
+    function getPhoneReg(){
+        var phone=$("#prphone").val();//获取用户手机号
+        var  password=$("#prpassword").val();
+        var  password2=$("#prpassword2").val();
+        alert(password);
+        var  aa=$("#qqq").val();
+        if(password!=password2){
+            ui.error("两次密码不一致")
+            return;
+        }
+        if(aa!=1){
+            ui.error("请勾选用户协议")
+            return;
+        }
+        $.ajax({
+            url:"http://127.0.0.1:8080/user/reg",
+            type:"post",
+            data:{
+                password:password,
+                phone:phone
+            },
+            success:function(data){
+                alert(data);
+                if(data=="注册成功"){
+                    //alert("注册成功,跳转登陆页面")
+                    location.href="http://192.168.1.155/admin/login.html";
+                }
+            }
+
+        })
+    }
+
+
+</SCRIPT>
+</BODY></HTML>

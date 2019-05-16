@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="http://try.51eduline.com/apps/admin/_static/css/admin.css" rel="stylesheet" type="text/css">
+    <script>
+        /**
+         * 全局变量
+         */
+        var SITE_URL  = 'http://try.51eduline.com';
+        var THEME_URL = 'http://try.51eduline.com/addons/theme/stv1/_static';
+        var APPNAME   = 'classroom';
+        var UPLOAD_URL ='http://try.51eduline.com/data/upload';
+        var MID		  = '1042';
+        var UID		  = '1042';
+        var initNums  =  '140';
+        // Js语言变量
+        var LANG = new Array();
+        var info = {icon:0,time:1800,btn:false,title:'',closeBtn:0};
+        var success = {icon:1,time:1800,btn:false,title:'',closeBtn:0};
+        var error = {icon:2,time:1800,btn:false,title:'',closeBtn:0};
+    </script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src=../addons/theme/stv1/_static/js/core.js"></script>
+    <script type="text/javascript" src="../apps/admin/_static/js/module.js"></script>
+    <script src="../addons/theme/stv1/_static/js/common.js"></script>
+    <script src="../addons/theme/stv1/_static/js/module.common.js"></script>
+    <script type="text/javascript" src="../apps/admin/_static/js/admin.js"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/ui.layer.js"></script>
+    <!--非admin应用的后台js脚本统一写在  模板风格对应的app目录下的admin.js中-->
+    <style>
+        @font-face {font-family: 'iconfontNEW';src: url('http://try.51eduline.com/addons/theme/stv1/_static/icon/iconfontNEW.woff?v={$site.sys_version}');}
+        .iconfontNEW{font-family: iconfontNEW;font-style: normal;}
+    </style>
+</head>
+<body>
+<div id="container" class="so_main">
+        <!-- END PAGE_CONFIG -->
+
+        <!-- START CONFIG_FORM -->
+
+
+        <form method="POST" action="http://127.0.0.1:8080/user/addteacher" >
+            <input type="hidden" name='systemdata_list' value="classroom_AdminTeacher"  class="s-txt"/>
+            <input type="hidden" name='systemdata_key' value="add"  class="s-txt"/>
+            <input type="hidden" name='pageTitle' value="添加" class="s-txt" />
+            <div class="form2">
+                <dl class="lineD" id='dl_mhm_id'>
+                    <dt>机构：</dt>
+                    <dd>
+                        <select name="courseorgid" id="courseorgid" >
+                        </select>
+                        <script type="text/javascript">
+                            $(function(){
+                                querycourseorgid();
+                            })
+                            function querycourseorgid(){
+                                $.ajax({
+                                    url:'http://127.0.0.1:8080/bunch/findCouserorgBean',
+                                    type:'get',
+                                    success:function(data){
+                                        var html = "<option value='-1'>请选择</option>";
+                                        for (var i = 0; i < data.length; i++) {
+                                            html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+                                        }
+                                        $("#courseorgid").html(html);
+                                        queryteacherid(data.id);
+                                    }
+                                })
+                            }</script>
+
+                    </dd>
+                </dl>
+                <dl class="lineD" id='dl_name'>
+                    <dt><font color="red"> * </font>姓名：</dt>
+                    <dd>
+                        <input name="name" id="form_name" type="text" value=""  class="s-txt" style='width:200px'>
+
+                    </dd>
+                </dl>
+                <dl class="lineD" id='dl_title_category'>
+                    <dt>讲师等级：</dt>
+                    <dd>
+                        <select name="degree"  id="degreeid">
+                        </select>
+                        <script type="text/javascript">
+                            $(function(){
+                                querydegreeid();
+                            })
+                            function querydegreeid(){
+                                $.ajax({
+                                    url:'http://127.0.0.1:8080/bunch/finddegreeid',
+                                    type:'get',
+                                    success:function(data){
+                                        var html = "<option value='-1'>请选择</option>";
+                                        for (var i = 0; i < data.length; i++) {
+                                            html+="<option value='"+data[i].id+"'>"+data[i].degree+"</option>";
+                                        }
+                                        $("#degreeid").html(html);
+                                        queryteacherid(data.id);
+                                    }
+                                })
+                            }
+
+                        </script>
+                    </dd></dl>
+                <div class="page_btm" >
+                    <input type='text' style="display:none">
+                    <input type="submit" class="btn_b" value="保存" />
+
+                </div>
+            </div>
+        </form>
+
+        <!-- END CONFIG_FORM -->
+    </div>
+</body>
+</html>

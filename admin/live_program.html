@@ -1,0 +1,179 @@
+
+<style media="screen">
+    body{background: #fff;}
+
+</style>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="../apps/admin/_static/css/admin.css" rel="stylesheet" type="text/css">
+    <script>
+        /**
+         * 全局变量
+         */
+        var SITE_URL  = 'http://try.51eduline.com';
+        var THEME_URL = 'http://try.51eduline.com/addons/theme/stv1/_static';
+        var APPNAME   = 'course';
+        var UPLOAD_URL ='http://try.51eduline.com/data/upload';
+        var MID		  = '1042';
+        var UID		  = '1042';
+        var initNums  =  '140';
+        // Js语言变量
+        var LANG = new Array();
+        var info = {icon:0,time:1800,btn:false,title:'',closeBtn:0};
+        var success = {icon:1,time:1800,btn:false,title:'',closeBtn:0};
+        var error = {icon:2,time:1800,btn:false,title:'',closeBtn:0};
+    </script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/core.js"></script>
+    <script type="text/javascript" src="../apps/admin/_static/js/module.js"></script>
+    <script src="../addons/theme/stv1/_static/js/common.js"></script>
+    <script src="../addons/theme/stv1/_static/js/module.common.js"></script>
+    <script type="text/javascript" src="../apps/admin/_static/js/admin.js"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/ui.layer.js"></script>
+    <!--非admin应用的后台js脚本统一写在  模板风格对应的app目录下的admin.js中-->
+    <script type="text/javascript" src="../apps/course/_static/js/admin.js"></script>
+    <script src="../js/vue.js"></script>
+    <style>
+        @font-face {font-family: 'iconfontNEW';src: url('../addons/theme/stv1/_static/icon/iconfontNEW.woff?v={$site.sys_version}');}
+        .iconfontNEW{font-family: iconfontNEW;font-style: normal;}
+    </style>
+
+</head>
+<body>
+<div id="container" class="so_main">
+    <!-- START TAB框 -->
+    <div class="tit_tab">
+        <ul>
+            <li><a href="../admin/bunch_planting.html?app=live&mod=AdminLive&act=index&tabHash=index" class="on">已审</a></li><li><a href="../admin/pending.html?app=live&mod=AdminLive&act=index&activity=1&tabHash=activity" >待审</a></li><li><a href="http://try.51eduline.com/index.php?app=live&mod=AdminLive&act=closeLive&tabHash=closeLive" >回收站</a></li><li><a href="../admin/add_planting.html?app=live&mod=AdminLive&act=addLive&tabHash=addLive" >添加</a></li><li><a href="http://try.51eduline.com/index.php?app=live&mod=AdminLive&act=export&tabHash=export" >导出</a></li>
+            <!-- 已审 -->
+            <!-- 已审 -->
+        </ul>
+    </div>
+</div>
+<div class="list" id='app_1'>
+    <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+        <tr>
+            <th style="width:30px;">
+                <input type="checkbox" id="checkbox_handle" onclick="admin.checkAll(this)" value="0">
+            </th>
+            &nbsp;<th class="line_l">编号</th>
+            <th class="line_l">直播课程名称</th>
+            <th class="line_l">封面</th>
+            <th class="line_l">市场价</th>
+            <th class="line_l">销售价</th>
+            <th class="line_l">机构名称</th>
+            <th class="line_l">主讲人</th>
+            <th class="line_l">创建人</th>
+            <th class="line_l">学习人数</th>
+            <th class="line_l">学习人数（营销）</th>
+            <th class="line_l">上架时间</th>
+            <th class="line_l">下架时间</th>
+            <th class="line_l">是否免费</th>
+            <th class="line_l">是否精选</th>
+            <th class="line_l" style="width:auto;">操作</th>
+        </tr>
+        <tbody  v-for="item in res">
+        <tr>
+            <td><input type="checkbox" value="153" onclick="admin.checkon(this)"  name="checkbox"></td>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td><img src={{item.image}} width='60px' height='60px'></td>
+            <td>{{item.price}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.courseorgname}}</td>
+            <td>{{item.teachername}}</td>
+            <td>{{item.teachername}}</td>
+            <td>{{item.count}}</td>
+            <td>{{item.count}}</td>
+            <td>{{item.addtime}}</td>
+            <td>{{item.downtime}}</td>
+            <td>{{item.free==1?"是":"否"}}</td>
+            <td>{{item.doutique==1?"是":"否"}}</td>
+            <td><a>立即上架</a>
+                <a>编辑</a>
+                <a>查看</a>
+                <a>评论</a>
+                <a href="javascript:void(0);" class="business" parameter="uid=2" hideFocus="true"  @click="deletebunchById(item.id)">禁用</a>
+            </td>
+        </tr>
+        </tbody>
+
+
+    </table>
+</div>
+</div>
+
+</body>
+<script>
+    function reset_search() {
+        var url = $('#search_form form ').attr('action');
+        window.location.href = url;
+    }
+</script>
+<script type="text/javascript">
+    document.onkeydown=function (e) {
+        e=window.event||e;
+        var key = e.keyCode;
+        if ((e.ctrlKey && key == 82) || key == 116) {
+            parent.MainIframe.location.reload();
+            if(document.all) {
+                e.keyCode = 0;
+                e.returnValue = false;
+            }else {
+                e.cancelBubble = true;
+                e.preventDefault();
+            }
+        }
+    }
+    /**
+     * 初始化对象
+     */
+//表格样式
+    $(document).ready(function(){
+        admin.bindTrOn();});
+
+
+</script>
+<script type="text/javascript">
+    var cardvue;
+    $(function() {
+        $.ajax({
+            url: 'http://127.0.0.1:8080/bunch/buquerybunch2',
+            type: 'get',
+            success: function (data) {
+                cardvue = new Vue({
+                    el: '#app_1',
+                    data: {
+                        res: data
+                    },
+                    methods:{
+                        deletebunchById(id) {
+                            alert("进入删除")
+                            $.ajax({
+                                url: 'http://127.0.0.1:8080/bunch/deletebunchById',
+                                data: {
+                                    id: id
+                                },
+                                type: 'delete',
+                                success: function () {
+                                    alert("删除成功")
+                                    location = location
+                                }
+
+                            })
+                        }
+                    },
+
+                })
+            },
+            error: function () {
+
+            }
+        })
+    })
+</script>
+
+</body>
+</html>

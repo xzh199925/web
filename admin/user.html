@@ -1,0 +1,168 @@
+
+<style media="screen">
+    body{background: #fff;}
+
+</style>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="../apps/admin/_static/css/admin.css" rel="stylesheet" type="text/css">
+    <script>
+        /**
+         * 全局变量
+         */
+        var SITE_URL  = 'http://try.51eduline.com';
+        var THEME_URL = 'http://try.51eduline.com/addons/theme/stv1/_static';
+        var APPNAME   = 'course';
+        var UPLOAD_URL ='http://try.51eduline.com/data/upload';
+        var MID		  = '1042';
+        var UID		  = '1042';
+        var initNums  =  '140';
+        // Js语言变量
+        var LANG = new Array();
+        var info = {icon:0,time:1800,btn:false,title:'',closeBtn:0};
+        var success = {icon:1,time:1800,btn:false,title:'',closeBtn:0};
+        var error = {icon:2,time:1800,btn:false,title:'',closeBtn:0};
+    </script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/core.js"></script>
+    <script type="text/javascript" src="../apps/admin/_static/js/module.js"></script>
+    <script src="../addons/theme/stv1/_static/js/common.js"></script>
+    <script src="../addons/theme/stv1/_static/js/module.common.js"></script>
+    <script type="text/javascript" src="../apps/admin/_static/js/admin.js"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/ui.layer.js"></script>
+    <!--非admin应用的后台js脚本统一写在  模板风格对应的app目录下的admin.js中-->
+    <script type="text/javascript" src="../apps/course/_static/js/admin.js"></script>
+    <script src="../js/vue.js"></script>
+    <style>
+        @font-face {font-family: 'iconfontNEW';src: url('../addons/theme/stv1/_static/icon/iconfontNEW.woff?v={$site.sys_version}');}
+        .iconfontNEW{font-family: iconfontNEW;font-style: normal;}
+    </style>
+</head>
+<body>
+<div id="container" class="so_main">
+    <!-- START TAB框 -->
+    <div class="tit_tab">
+        <ul>
+            <li><a href="http://try.51eduline.com/index.php?app=admin&mod=User&act=index&tabHash=index" class="on">列表</a></li><li><a href="http://try.51eduline.com/index.php?app=admin&mod=User&act=dellist&tabHash=dellist" >禁用</a></li><li><a href="../admin/adduser.html?app=admin&mod=User&act=addUser&tabHash=addUser" >添加</a></li><li><a href="http://try.51eduline.com/index.php?app=admin&mod=User&act=importUser&tabHash=importUser" >导入</a></li><li><a href="http://try.51eduline.com/index.php?app=admin&mod=User&act=export&tabHash=export" >导出</a></li>
+            <!-- 列表 -->
+            <!-- 已审 -->
+        </ul>
+    </div>
+</div>
+<div class="list" id='app_1'>
+    <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+        <tr>
+            <th style="width:30px;">
+                <input type="checkbox" id="checkbox_handle" onclick="admin.checkAll(this)" value="0">
+            </th>
+            &nbsp;<th class="line_l">编号</th>
+            <th class="line_l">用户名</th>
+            <th class="line_l">手机号</th>
+            <th class="line_l">头像</th>
+            <th class="line_l">所属机构</th>
+            <th class="line_l">注册时间</th>
+            <th class="line_l">操作</th>
+            <th class="line_l" style="width:auto;">操作</th>
+        </tr>
+        <tbody  v-for="item in res">
+        <tr>
+            <td><input type="checkbox" value="153" onclick="admin.checkon(this)"  name="checkbox"></td>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.phone}}</td>
+            <td><img src={{item.image}} width='60px' height='60px'></td>
+            <td>{{item.courseorgname}}</td>
+            <td>{{item.created}}</td>
+            <td><a>学习记录-</a>
+                <a>编辑-</a>
+                <a>发私信-</a>
+
+                <a href="javascript:void(0);" class="business" parameter="uid=2" hideFocus="true"  @click="deletebunchById(item.id)">禁用</a>
+
+            </td>
+        </tr>
+        </tbody>
+
+
+    </table>
+</div>
+
+
+
+</div>
+
+</body>
+<script>
+    function reset_search() {
+        var url = $('#search_form form ').attr('action');
+        window.location.href = url;
+    }
+</script>
+<script type="text/javascript">
+    document.onkeydown=function (e) {
+        e=window.event||e;
+        var key = e.keyCode;
+        if ((e.ctrlKey && key == 82) || key == 116) {
+            parent.MainIframe.location.reload();
+            if(document.all) {
+                e.keyCode = 0;
+                e.returnValue = false;
+            }else {
+                e.cancelBubble = true;
+                e.preventDefault();
+            }
+        }
+    }
+    /**
+     * 初始化对象
+     */
+//表格样式
+    $(document).ready(function(){
+        admin.bindTrOn();});
+
+
+</script>
+<script type="text/javascript">
+    var cardvue;
+    $(function() {
+        $.ajax({
+            url: 'http://127.0.0.1:8080/user/queryuser',
+            type: 'get',
+            success: function (data) {
+                cardvue = new Vue({
+                    el: '#app_1',
+                    data: {
+                        res: data
+                    },
+                    methods:{
+                        deletebunchById(id) {
+                            alert("进入删除")
+                            $.ajax({
+                                url: 'http://127.0.0.1:8080/user/deleteuser',
+                                data: {
+                                    id: id
+                                },
+                                type: 'delete',
+                                success: function () {
+                                    alert("删除成功")
+                                    location = location
+                                }
+
+                            })
+                        }
+                    },
+
+                })
+            },
+
+            error: function () {
+
+            }
+        })
+    })
+</script>
+
+</body>
+</html>
